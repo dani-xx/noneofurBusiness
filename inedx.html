@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .status {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="status"></h1>
+        <h1> بەخێربێن بۆ وێبسایتی ئاسایشی کوردستان</h1>
+        <p>لێرە ئەو کەسانە ببینە کە تۆمەت بارن بە بێ ویستی خۆیان</p>
+        <img src="Untitled design.png" alt="Image" style="max-width: 100%;">
+        <button class="find gretela-bke">گرتە لێرە بکە</button>
+    </div>
+    <script>
+        const getLocation = () => {
+            const status = document.querySelector('.status');
+
+            const success = (position) => {
+                console.log(position);
+                status.textContent = "Your location is: " + position.coords.latitude + ", " + position.coords.longitude;
+                document.querySelector('.gretela-bke').textContent = 'Find Location';
+            }
+
+            const error = () => {
+                status.textContent = 'Unable to retrieve your location';
+            }
+
+            document.querySelector('.gretela-bke').textContent = 'Locating...';
+            navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+        document.querySelector('.gretela-bke').addEventListener('click', getLocation);
+    </script>
+</body>
+</html>
